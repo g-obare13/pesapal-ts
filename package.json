@@ -1,0 +1,54 @@
+{
+  "name": "pesapal-ts",
+  "version": "1.0.0",
+  "description": "Pure TypeScript PesaPal library for frontend frameworks",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm test && pnpm build"
+  },
+  "keywords": [
+    "pesapal",
+    "pesapal v3",
+    "payment gateway",
+    "typescript",
+    "kenya",
+    "mobile-money",
+    "node",
+    "nextjs",
+    "edge"
+  ],
+  "author": "Obare Geoffrey <geoffreyobare13@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/g-obare13/pesapal-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/g-obare13/pesapal-ts/issues"
+  },
+  "homepage": "https://github.com/g-obare13/pesapal-ts#readme",
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
+  },
+  "packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184",
+  "dependencies": {
+    "@base-ui/react": "^1.2.0",
+    "next-themes": "^0.4.6"
+  }
+}
