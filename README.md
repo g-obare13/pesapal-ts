@@ -7,6 +7,14 @@ The library was created to ease the usage of PesaPal payments in modern TypeScri
 > [!WARNING]
 > Consumer Keys and Secrets should never be exposed to the browser. Only use this library inside secure server-side routes (like Next.js API Routes or Server Actions).
 
+##  📸 Showcase
+
+The library comes with three beautiful, ready-to-use examples for popular frameworks. They all share the same premium UI and robust payment logic.
+
+| [Next.js Example](./examples/nextjs-example) | [Nuxt.js Example](./examples/nuxt-example) | [SvelteKit Example](./examples/sveltekit-example) |
+| :---: | :---: | :---: |
+| ![Next.js Showcase](./showcase/nextjs.png) | ![Nuxt.js Showcase](./showcase/nuxtjs.png) | ![SvelteKit Showcase](./showcase/sveltekit.png) |
+
 ##  Resources
 
 To help you get started quickly, here are some useful links:
@@ -90,13 +98,30 @@ if (status.payment_status_code === 'COMPLETED') {
 }
 ```
 
-##  Examples
+##  Framework Setup
 
-We have provided ready-to-use examples for popular frameworks:
+We have provided ready-to-use examples for popular frameworks. Each example includes a shared `CheckoutForm` component and secure API routes.
 
-- **[Next.js Example](./examples/nextjs-example)** - Full checkout flow with App Router and API routes.
-- **[Nuxt.js Example](./examples/nuxt-example)** - Integration with Vue components and Nuxt server routes.
-- **[SvelteKit Example](./examples/sveltekit-example)** - Modern Svelte integration.
+### [Next.js Example](./examples/nextjs-example)
+1. **API Integration**: Implements App Router API routes (`app/api/checkout/route.ts`) to securely initialize payments.
+2. **Components**: Uses Shadcn-inspired UI components for a premium look and feel.
+3. **Setup**:
+   - Copy `.env.example` to `.env` and add your PesaPal keys.
+   - Run `pnpm install && pnpm dev`.
+
+### [Nuxt.js Example](./examples/nuxt-example)
+1. **Server Routes**: Uses Nitro server routes (`server/api/checkout.post.ts`) for server-side logic.
+2. **Vue Integration**: Features a reactive `CheckoutForm.vue` component with Tailwind CSS.
+3. **Setup**:
+   - Add keys to `.env` or `runtimeConfig` in `nuxt.config.ts`.
+   - Run `pnpm install && pnpm dev`.
+
+### [SvelteKit Example](./examples/sveltekit-example)
+1. **Server Actions**: Leverages SvelteKit Form Actions (`+page.server.ts`) for seamless form submission.
+2. **Modern Styling**: Uses Svelte with Tailwind CSS for a fast and beautiful experience.
+3. **Setup**:
+   - Define keys in `.env` (accessed via `$env/static/private`).
+   - Run `pnpm install && pnpm dev`.
 
 ##  Error Handling
 
