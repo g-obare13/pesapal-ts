@@ -187,7 +187,7 @@ import {
   PesapalValidationError,
   PesapalAPIError,
   PesapalNetworkError
-} from 'pesapal-ts';
+} from '@obare13/pesapal-v3';
 
 try {
   await pesapal.submitOrder(payload);
