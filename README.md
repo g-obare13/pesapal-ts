@@ -206,6 +206,18 @@ try {
 }
 ```
 
+##  Open Source & Contributions
+
+This project is open-source. Feel free to fork it, modify it, or contribute to its development.
+
+**Git Repository:** [https://github.com/g-obare13/pesapal-ts](https://github.com/g-obare13/pesapal-ts)
+
+```bash
+git clone https://github.com/g-obare13/pesapal-ts.git
+cd pesapal-ts
+pnpm install
+```
+
 ##  Features
 
 - **Dependency-free**: Pure TypeScript using native Fetch API.
