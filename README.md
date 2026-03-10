@@ -7,7 +7,7 @@ The library was created to ease the usage of PesaPal payments in modern TypeScri
 > [!WARNING]
 > Consumer Keys and Secrets should never be exposed to the browser. Only use this library inside secure server-side routes (like Next.js API Routes or Server Actions).
 
-##  📸 Showcase
+##  Showcase
 
 The library comes with three beautiful, ready-to-use examples for popular frameworks. They all share the same premium UI and robust payment logic.
 
@@ -26,7 +26,7 @@ To help you get started quickly, here are some useful links:
 ##  Installation
 
 ```bash
-npm install pesapal-ts
+npm install @obare13/pesapal-v3
 ```
 
 *(Since you are developing locally, you can use `npm link` or copy this package directly to your project)*
@@ -36,7 +36,7 @@ npm install pesapal-ts
 ### 1. Initialize the client
 
 ```ts
-import { PesapalClient } from 'pesapal-ts';
+import { PesapalClient } from '@obare13/pesapal-v3';
 
 const pesapal = new PesapalClient({
   consumerKey: process.env.PESAPAL_CONSUMER_KEY!,
@@ -98,9 +98,62 @@ if (status.payment_status_code === 'COMPLETED') {
 }
 ```
 
+##  Going to Production
+
+To move from Sandbox to Production, follow these critical steps to ensure secure and successful payments.
+
+### 1. Environment Configuration
+Update your environment variables with your live credentials from the [PesaPal Dashboard](https://dashboard.pesapal.com/).
+
+```env
+PESAPAL_CONSUMER_KEY=your_live_key
+PESAPAL_CONSUMER_SECRET=your_live_secret
+PESAPAL_ENVIRONMENT=production
+```
+
+### 2. Update Client Initialization
+Ensure your client is initialized with the `'production'` environment.
+
+```ts
+const pesapal = new PesapalClient({
+  consumerKey: process.env.PESAPAL_CONSUMER_KEY!,
+  consumerSecret: process.env.PESAPAL_CONSUMER_SECRET!,
+  environment: 'production', // MUST be 'production' for live payments
+});
+```
+
+### 3. Handle IPNs Securely (Webhooks)
+When PesaPal sends an IPN (Instant Payment Notification) to your server, you **must** verify the transaction status before updating your database.
+
+**Example: Next.js API Route (`app/api/pesapal-webhook/route.ts`)**
+```ts
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const orderTrackingId = searchParams.get('OrderTrackingId');
+  const orderNotificationId = searchParams.get('OrderNotificationId');
+
+  if (!orderTrackingId) return new Response('Missing ID', { status: 400 });
+
+  await pesapal.authenticate();
+  const status = await pesapal.getTransactionStatus(orderTrackingId);
+
+  if (status.payment_status_code === 'COMPLETED') {
+    // 1. Mark order as paid in your DB
+    // 2. Trigger post-payment logic (e.g. send email)
+  }
+
+  // Return exactly what PesaPal expects to acknowledge receipt
+  return Response.json({
+    orderNotificationId,
+    orderTrackingId,
+    status: 200
+  });
+}
+```
+
 ##  Framework Setup
 
-We have provided ready-to-use examples for popular frameworks. Each example includes a shared `CheckoutForm` component and secure API routes.
+I have provided ready-to-use examples for popular frameworks. Each example includes a shared `CheckoutForm` component and secure API routes.
 
 ### [Next.js Example](./examples/nextjs-example)
 1. **API Integration**: Implements App Router API routes (`app/api/checkout/route.ts`) to securely initialize payments.
