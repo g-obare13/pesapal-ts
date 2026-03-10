@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-hanken-grotesk: "Hanken Grotesk", sans-serif;
+  --background: #f6f4ef;
+  --foreground: #1c1c1c;
+  --primary: #c6a75e;
+  --primary-foreground: #ffffff;
+  --muted-foreground: #7a746a;
+  --border: #e2dfd6;
+
+  --color-primary-50: #fbf9f4;
+  --color-primary-100: #f7f3e8;
+  --color-primary-500: #c6a75e;
+  --color-primary-800: #8a7441;
+  --color-primary-950: #62532e;
+  --color-primary-1000: #1e1608;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-hanken-grotesk);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-hanken-grotesk);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-primary-950);
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+h6 {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+p {
+  font-family: var(--font-hanken-grotesk);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(30, 22, 8, 0.9);
+}
+
+span {
+  font-family: var(--font-hanken-grotesk);
+  font-size: 0.875rem;
+}
+
+.lucide {
+  stroke-width: 3px;
+}
