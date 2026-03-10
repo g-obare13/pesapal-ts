@@ -28,7 +28,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.577.0",
     "lucide-svelte": "^0.577.0",
-    "pesapal-ts": "link:..\\..",
+    "pesapal-ts": "workspace:*",
     "tailwind-merge": "^3.5.0"
   },
   "pnpm": {
